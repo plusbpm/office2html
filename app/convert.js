@@ -25,7 +25,7 @@ module.exports = function(srcfile, destfile, options, cb) {
   if (!cb) {
     return "Не указана функция возврата (callback)";
   }
-  ext = srcfile.split(".").pop();
+  ext = srcfile.split(".").pop().toLowerCase();
   switch (ext) {
     case "pdf":
       cnv = new PdfType(srcfile, destfile);
@@ -49,7 +49,7 @@ module.exports = function(srcfile, destfile, options, cb) {
   }
   return fs.stat(srcfile, function(err, stat) {
     if (err) {
-      return cb(err);
+      return cb("Файл источник не найден");
     }
     return cnv["do"](cb);
   });

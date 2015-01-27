@@ -18,7 +18,7 @@ module.exports = (srcfile, destfile, options, cb)->
 
 	return "Не указана функция возврата (callback)" if not cb
 
-	ext = srcfile.split(".").pop()
+	ext = srcfile.split(".").pop().toLowerCase()
 	switch ext
 		when "pdf"
 			cnv = new PdfType(srcfile, destfile)
@@ -33,6 +33,6 @@ module.exports = (srcfile, destfile, options, cb)->
 	return cb result if result
 
 	fs.stat srcfile, (err, stat)->
-		return cb err if err
+		return cb "Файл источник не найден" if err
 		cnv.do cb
 
