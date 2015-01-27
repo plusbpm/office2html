@@ -39,6 +39,7 @@ module.exports = function(srcfile, destfile, options, cb) {
     case "xlsx":
     case "ods":
     case "ppt":
+    case "pptx":
       cnv = new UnoconvType(srcfile, destfile);
       break;
     default:

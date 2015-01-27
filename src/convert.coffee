@@ -24,7 +24,7 @@ module.exports = (srcfile, destfile, options, cb)->
 			cnv = new PdfType(srcfile, destfile)
 		when "docx"
 			cnv = new DocxType(srcfile, destfile)
-		when "doc","odt","xls","xlsx","ods","ppt"
+		when "doc","odt","xls","xlsx","ods","ppt","pptx"
 			cnv = new UnoconvType(srcfile, destfile)
 		else
 			return cb "Неподдерживаемый тип, или не указано расширение у файла."
