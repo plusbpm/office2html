@@ -37,6 +37,8 @@ class PdfType
 			error += chunk.toString()
 		child.on "close", (code, signal)=>
 			return cb error if code isnt 0
-			fs.move wd+"/"+to, @destfile, cb
+			fromFile = wd+"/"+to
+			return cb() if fromFile is @destfile 
+			fs.move fromFile, @destfile, cb
 
 module.exports = PdfType
