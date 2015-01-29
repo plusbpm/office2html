@@ -1,5 +1,14 @@
 path = require "path"
 
+support_ext =
+	pdf: ["pdf"]
+	docx: ["docx"]
+	unoconv: ["doc","odt","xls","xlsx","ods","ppt","pptx"]
+
+all_ext = []
+for k,v of support_ext
+	all_ext = all_ext.concat v
+
 module.exports =
 	pdf:
 		default: ['--zoom','1.33']
@@ -19,3 +28,4 @@ module.exports =
 			delete module.exports[type][name]
 	setTempDir: (dir)-> module.exports.tmp_dir = path.normalize dir
 
+	support: (ext)-> ext in all_ext
