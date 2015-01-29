@@ -1,10 +1,8 @@
-fs 			= require "fs"
+fs 			= require "fs-extra"
 path 		= require "path"
 childpr		= require "child_process"
-temp 		= require "temp"
 
 settings	= require "./settings"
-
 PdfType		= require "./pdftype"
 
 class UnoconvType
@@ -28,7 +26,10 @@ class UnoconvType
 	do: (cb)->
 
 		error = ""
-		tmpfile = temp.path {prefix: 'unoconv-office-'}
+
+		now = new Date()
+		randomName = now.getYear()+"_"+now.getMonth()+"_"+now.getDate()+"_"+process.pid+"_"+(Math.random() * 0x100000000 + 1).toString(36)+".pdf"
+		tmpfile = path.normalize settings.tmp_dir+"/#{randomName}"
 
 		args = ["-o",tmpfile,"--format=pdf"].concat(@options)
 		args.push(@srcfile)

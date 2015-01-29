@@ -1,4 +1,4 @@
-fs 			= require "fs"
+fs 			= require "fs-extra"
 path 		= require "path"
 mammoth		= require "mammoth"
 

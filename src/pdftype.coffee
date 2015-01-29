@@ -1,4 +1,4 @@
-fs 			= require "fs"
+fs 			= require "fs-extra"
 path 		= require "path"
 childpr		= require "child_process"
 
@@ -37,6 +37,6 @@ class PdfType
 			error += chunk.toString()
 		child.on "close", (code, signal)=>
 			return cb error if code isnt 0
-			fs.rename wd+"/"+to, @destfile, cb
+			fs.move wd+"/"+to, @destfile, cb
 
 module.exports = PdfType
