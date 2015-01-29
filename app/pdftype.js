@@ -54,10 +54,15 @@ PdfType = (function() {
     });
     return child.on("close", (function(_this) {
       return function(code, signal) {
+        var fromFile;
         if (code !== 0) {
           return cb(error);
         }
-        return fs.move(wd + "/" + to, _this.destfile, cb);
+        fromFile = wd + "/" + to;
+        if (fromFile === _this.destfile) {
+          return cb();
+        }
+        return fs.move(fromFile, _this.destfile, cb);
       };
     })(this));
   };
