@@ -4,6 +4,7 @@ childpr		= require "child_process"
 
 settings	= require "./settings"
 PdfType		= require "./pdftype"
+stack		= require "./stack"
 
 class UnoconvType
 	constructor: (srcfile, destfile)->
@@ -23,8 +24,8 @@ class UnoconvType
 			@options = @options.concat opts
 			return
 		return "Опции должны быть именем предустановленных настроек, либо массивом строк с опциями"
-	do: (cb)->
-
+	do: (cb)-> stack.setNext @, cb
+	make: (cb)->
 		error = ""
 
 		now = new Date()
